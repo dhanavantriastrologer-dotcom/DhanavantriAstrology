@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sri Raghavendra Jyotishyam | శ్రీ రాఘవేంద్ర జ్యోతిష్యం</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Noto+Serif+Telugu:wght@300;400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --gold:    #c8960c;
+      --gold2:   #f0c040;
+      --deep:    #0d0a05;
+      --dark:    #1a1208;
+      --card:    #221a08;
+      --border:  #3d2e0a;
+      --red:     #b83220;
+      --cream:   #f5e6c0;
+      --text:    #e8d5a0;
+      --muted:   #a89060;
+      --success: #2d7a3e;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--deep);
+      color: var(--text);
+      font-family: 'Cormorant Garamond', serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── STARFIELD ─────────────────────── */
+    #stars {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background: radial-gradient(ellipse at 20% 50%, #1a1004 0%, #0d0a05 60%);
+    }
+    #stars::before, #stars::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(1px 1px at 10% 15%, rgba(248,220,120,.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 30% 50%, rgba(248,220,120,.4) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 50% 30%, rgba(248,220,120,.7) 0%, transparent 100%),
+        radial-gradient(1px 1px at 70% 80%, rgba(248,220,120,.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 90% 20%, rgba(248,220,120,.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 15% 70%, rgba(248,220,120,.3) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 45% 60%, rgba(248,220,120,.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 65% 40%, rgba(248,220,120,.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 80% 55%, rgba(248,220,120,.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 25% 85%, rgba(248,220,120,.3) 0%, transparent 100%);
+    }
+
+    /* ── LANGUAGE TOGGLE ───────────────── */
+    #lang-bar {
+      position: fixed; top: 0; right: 0; left: 0; z-index: 100;
+      display: flex; justify-content: flex-end; align-items: center;
+      padding: 10px 24px; gap: 12px;
+      background: linear-gradient(to bottom, rgba(13,10,5,.95), transparent);
+    }
+    .lang-btn {
+      background: transparent; border: 1px solid var(--border);
+      color: var(--muted); font-family: inherit; font-size: 13px;
+      padding: 5px 14px; cursor: pointer; border-radius: 3px;
+      transition: all .2s;
+    }
+    .lang-btn.active { border-color: var(--gold); color: var(--gold2); background: rgba(200,150,12,.1); }
+    .lang-btn:hover:not(.active) { color: var(--cream); border-color: var(--muted); }
+
+    /* ── HERO ──────────────────────────── */
+    #hero {
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      min-height: 100vh; text-align: center; padding: 80px 24px 60px;
+    }
+    .mandala {
+      width: 160px; height: 160px; margin-bottom: 24px; opacity: .85;
+      animation: spin-slow 60s linear infinite;
+    }
+    @keyframes spin-slow { to { transform: rotate(360deg); } }
+
+    .title-main {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(1.8rem, 5vw, 3.4rem);
+      color: var(--gold2);
+      line-height: 1.2;
+      text-shadow: 0 0 40px rgba(200,150,12,.6), 0 2px 8px rgba(0,0,0,.8);
+      letter-spacing: .03em;
+    }
+    .title-tel {
+      font-family: 'Noto Serif Telugu', serif;
+      font-size: clamp(1.4rem, 3.5vw, 2.4rem);
+      color: var(--gold);
+      margin-top: 8px;
+      opacity: .9;
+    }
+    .hero-sub {
+      margin-top: 20px; font-size: 1.15rem; color: var(--muted);
+      font-style: italic; max-width: 540px; line-height: 1.7;
+    }
+    .divider {
+      width: 200px; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      margin: 28px auto;
+    }
+    .hero-stats {
+      display: flex; gap: 40px; justify-content: center; flex-wrap: wrap;
+    }
+    .stat { text-align: center; }
+    .stat-num { font-family: 'Cinzel Decorative', serif; font-size: 1.9rem; color: var(--gold2); }
+    .stat-lbl { font-size: .85rem; color: var(--muted); margin-top: 2px; }
+
+    .scroll-cta {
+      margin-top: 48px; display: flex; flex-direction: column; align-items: center; gap: 8px;
+      color: var(--muted); font-size: .9rem; animation: bounce 2s infinite;
+    }
+    @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+    .arrow { font-size: 1.4rem; color: var(--gold); }
+
+    /* ── SECTIONS ──────────────────────── */
+    section {
+      position: relative; z-index: 1;
+      max-width: 960px; margin: 0 auto; padding: 70px 24px;
+    }
+    .section-head {
+      text-align: center; margin-bottom: 48px;
+    }
+    .section-eyebrow {
+      font-size: .8rem; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 10px;
+    }
+    .section-title {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      color: var(--cream);
+    }
+    .section-title-tel {
+      font-family: 'Noto Serif Telugu', serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.7rem);
+      color: var(--gold);
+      margin-top: 6px;
+    }
+
+    /* ── ABOUT ─────────────────────────── */
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start;
+    }
+    @media (max-width: 640px) { .about-grid { grid-template-columns: 1fr; } }
+    .about-card {
+      background: linear-gradient(135deg, var(--card), rgba(40,30,10,.6));
+      border: 1px solid var(--border); border-radius: 8px;
+      padding: 28px; line-height: 1.8; font-size: 1.05rem; color: var(--text);
+    }
+    .about-card p { margin-bottom: 12px; }
+    .about-card p:last-child { margin-bottom: 0; }
+
+    /* ── RULES ─────────────────────────── */
+    #rules { background: linear-gradient(to bottom, transparent, rgba(184,50,32,.04), transparent); }
+    .rules-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;
+    }
+    .rule-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+      padding: 22px 20px; display: flex; gap: 14px; align-items: flex-start;
+    }
+    .rule-icon { font-size: 1.8rem; flex-shrink: 0; margin-top: 2px; }
+    .rule-title { font-weight: 600; color: var(--gold2); margin-bottom: 5px; font-size: 1.05rem; }
+    .rule-title-tel { font-family: 'Noto Serif Telugu', serif; font-size: .9rem; color: var(--gold); }
+    .rule-desc { color: var(--muted); font-size: .92rem; line-height: 1.6; }
+    .rule-desc-tel { font-family: 'Noto Serif Telugu', serif; font-size: .85rem; color: var(--muted); line-height: 1.7; }
+
+    .blocked-days {
+      margin-top: 36px;
+      background: rgba(184,50,32,.12); border: 1px solid rgba(184,50,32,.3);
+      border-radius: 8px; padding: 24px;
+    }
+    .blocked-title { color: var(--red); font-weight: 600; font-size: 1.1rem; margin-bottom: 12px; }
+    .blocked-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+    .blocked-tag {
+      background: rgba(184,50,32,.2); border: 1px solid rgba(184,50,32,.4);
+      color: #e07060; padding: 4px 14px; border-radius: 20px; font-size: .88rem;
+    }
+
+    /* ── APPOINTMENT FORM ──────────────── */
+    #book { background: linear-gradient(to bottom, transparent, rgba(200,150,12,.04), transparent); }
+
+    .form-wrapper {
+      background: linear-gradient(135deg, var(--card), rgba(30,22,8,.8));
+      border: 1px solid var(--border); border-radius: 12px; padding: 40px;
+    }
+    @media (max-width: 600px) { .form-wrapper { padding: 24px 18px; } }
+
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } }
+
+    .form-group { display: flex; flex-direction: column; gap: 7px; }
+    .form-group.full { grid-column: 1 / -1; }
+
+    label {
+      font-size: .85rem; color: var(--gold); letter-spacing: .05em; text-transform: uppercase;
+    }
+    .label-tel { font-family: 'Noto Serif Telugu', serif; font-size: .82rem; color: var(--muted); text-transform: none; letter-spacing: 0; margin-top: 1px; }
+
+    input, select, textarea {
+      background: rgba(255,255,255,.04); border: 1px solid var(--border);
+      color: var(--cream); font-family: 'Cormorant Garamond', serif; font-size: 1rem;
+      padding: 11px 14px; border-radius: 5px; outline: none;
+      transition: border-color .2s, background .2s;
+      width: 100%;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--gold); background: rgba(200,150,12,.06);
+    }
+    input::placeholder, textarea::placeholder { color: var(--muted); opacity: .6; }
+    select option { background: var(--dark); color: var(--cream); }
+    textarea { resize: vertical; min-height: 80px; }
+
+    .gender-group { display: flex; gap: 12px; flex-wrap: wrap; }
+    .gender-btn {
+      flex: 1; min-width: 100px; padding: 10px 16px; background: rgba(255,255,255,.04);
+      border: 1px solid var(--border); color: var(--muted); cursor: pointer;
+      border-radius: 5px; font-family: inherit; font-size: .95rem; transition: all .2s; text-align: center;
+    }
+    .gender-btn.selected { border-color: var(--gold); color: var(--gold2); background: rgba(200,150,12,.1); }
+
+    /* conditional rules reminder */
+    #female-rules {
+      background: rgba(184,50,32,.1); border: 1px solid rgba(184,50,32,.35);
+      border-radius: 6px; padding: 14px 16px; font-size: .9rem; color: #e07870;
+      line-height: 1.7; display: none; margin-top: 4px;
+    }
+    #female-rules.show { display: block; }
+
+    .submit-btn {
+      margin-top: 28px; width: 100%; padding: 16px;
+      background: linear-gradient(135deg, #c8960c, #a87a08);
+      color: #0d0a05; font-family: 'Cinzel Decorative', serif; font-size: 1rem;
+      border: none; border-radius: 6px; cursor: pointer; letter-spacing: .05em;
+      transition: all .25s; position: relative; overflow: hidden;
+    }
+    .submit-btn:hover { background: linear-gradient(135deg, #e0aa10, #c8960c); transform: translateY(-1px); box-shadow: 0 6px 24px rgba(200,150,12,.3); }
+    .submit-btn:active { transform: translateY(0); }
+    .submit-btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+
+    /* ── SUCCESS MESSAGE ───────────────── */
+    #success-msg {
+      display: none; text-align: center; padding: 40px 24px;
+      background: rgba(45,122,62,.12); border: 1px solid rgba(45,122,62,.4);
+      border-radius: 12px; margin-top: 20px;
+    }
+    #success-msg.show { display: block; }
+    .success-icon { font-size: 3rem; margin-bottom: 16px; }
+    .success-title { font-family: 'Cinzel Decorative', serif; font-size: 1.5rem; color: #6dbd80; margin-bottom: 10px; }
+    .success-sub { color: var(--text); font-size: 1rem; line-height: 1.7; }
+    .token-badge {
+      display: inline-block; margin-top: 14px;
+      background: rgba(200,150,12,.15); border: 1px solid var(--gold);
+      color: var(--gold2); padding: 8px 24px; border-radius: 4px;
+      font-family: 'Cinzel Decorative', serif; font-size: 1.4rem; letter-spacing: .1em;
+    }
+
+    /* ── ERROR ──────────────────────────── */
+    #error-msg {
+      display: none; background: rgba(184,50,32,.1); border: 1px solid rgba(184,50,32,.4);
+      border-radius: 8px; padding: 16px; color: #e07060; font-size: .95rem;
+      margin-top: 16px; line-height: 1.6;
+    }
+    #error-msg.show { display: block; }
+
+    /* ── ADMIN PANEL ───────────────────── */
+    #admin {
+      display: none; position: fixed; inset: 0; z-index: 200;
+      background: rgba(0,0,0,.92); overflow-y: auto;
+    }
+    #admin.open { display: block; }
+    .admin-inner {
+      max-width: 1100px; margin: 0 auto; padding: 40px 24px;
+    }
+    .admin-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 32px; flex-wrap: wrap; gap: 12px;
+    }
+    .admin-title {
+      font-family: 'Cinzel Decorative', serif; font-size: 1.6rem; color: var(--gold2);
+    }
+    .admin-close {
+      background: rgba(255,255,255,.08); border: 1px solid var(--border);
+      color: var(--cream); padding: 8px 20px; border-radius: 4px;
+      cursor: pointer; font-family: inherit; font-size: .9rem;
+    }
+    .admin-close:hover { background: rgba(255,255,255,.14); }
+
+    .filter-row {
+      display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 24px;
+      align-items: flex-end;
+    }
+    .filter-row input, .filter-row select { max-width: 220px; }
+    .filter-btn {
+      padding: 11px 22px; background: linear-gradient(135deg, #c8960c, #a87a08);
+      color: #0d0a05; border: none; border-radius: 5px;
+      cursor: pointer; font-family: 'Cinzel Decorative', serif; font-size: .85rem;
+    }
+
+    #appt-table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+    #appt-table th {
+      background: rgba(200,150,12,.15); color: var(--gold); padding: 11px 12px;
+      text-align: left; font-weight: 600; font-size: .8rem; letter-spacing: .08em;
+      text-transform: uppercase; border-bottom: 1px solid var(--border);
+    }
+    #appt-table td {
+      padding: 11px 12px; border-bottom: 1px solid rgba(255,255,255,.05);
+      color: var(--text); vertical-align: middle;
+    }
+    #appt-table tr:hover td { background: rgba(200,150,12,.04); }
+    .badge {
+      display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: .78rem;
+    }
+    .badge-m { background: rgba(50,100,200,.2); color: #80aaff; border: 1px solid rgba(50,100,200,.3); }
+    .badge-f { background: rgba(200,80,120,.2); color: #ff90b8; border: 1px solid rgba(200,80,120,.3); }
+
+    /* ── ADMIN LOGIN ────────────────────── */
+    #admin-login {
+      position: fixed; inset: 0; z-index: 300; background: rgba(0,0,0,.97);
+      display: none; align-items: center; justify-content: center;
+    }
+    #admin-login.open { display: flex; }
+    .login-box {
+      background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+      padding: 40px; width: 100%; max-width: 360px; text-align: center;
+    }
+    .login-box h2 { font-family: 'Cinzel Decorative', serif; color: var(--gold2); margin-bottom: 24px; font-size: 1.3rem; }
+    .login-box input { text-align: center; letter-spacing: .2em; margin-bottom: 16px; }
+    .login-btn {
+      width: 100%; padding: 13px;
+      background: linear-gradient(135deg, #c8960c, #a87a08);
+      color: #0d0a05; border: none; border-radius: 5px;
+      cursor: pointer; font-family: 'Cinzel Decorative', serif; font-size: .95rem;
+    }
+    .login-err { color: #e07060; font-size: .88rem; margin-top: 10px; display: none; }
+
+    /* ── FOOTER ─────────────────────────── */
+    footer {
+      position: relative; z-index: 1;
+      text-align: center; padding: 40px 24px;
+      border-top: 1px solid var(--border);
+      color: var(--muted); font-size: .88rem; line-height: 2;
+    }
+    footer a { color: var(--gold); text-decoration: none; }
+
+    /* ── ADMIN TRIGGER (hidden corner) ─── */
+    #admin-trigger {
+      position: fixed; bottom: 16px; right: 16px; z-index: 150;
+      background: rgba(200,150,12,.15); border: 1px solid rgba(200,150,12,.3);
+      color: var(--gold); padding: 8px 14px; border-radius: 4px; font-size: .8rem;
+      cursor: pointer; font-family: inherit;
+    }
+    #admin-trigger:hover { background: rgba(200,150,12,.25); }
+
+    /* ── LOADING SPINNER ───────────────── */
+    .spinner {
+      display: inline-block; width: 18px; height: 18px;
+      border: 2px solid rgba(13,10,5,.4); border-top-color: #0d0a05;
+      border-radius: 50%; animation: spin .7s linear infinite;
+      vertical-align: middle; margin-right: 8px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── NAV ────────────────────────────── */
+    nav {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 99;
+      display: flex; justify-content: center; gap: 4px;
+      padding: 10px 16px 14px;
+      background: linear-gradient(to top, rgba(13,10,5,.97), transparent);
+    }
+    .nav-link {
+      color: var(--muted); text-decoration: none; font-size: .82rem;
+      padding: 6px 14px; border-radius: 20px; transition: all .2s;
+      border: 1px solid transparent;
+    }
+    .nav-link:hover { color: var(--gold2); border-color: var(--border); }
+
+    .tel { font-family: 'Noto Serif Telugu', serif; }
+    .en { }
+  </style>
+</head>
+<body>
+
+<!-- Starfield bg -->
+<div id="stars"></div>
+
+<!-- Language Bar -->
+<div id="lang-bar">
+  <button class="lang-btn active" onclick="setLang('en')" id="btn-en">English</button>
+  <button class="lang-btn" onclick="setLang('te')" id="btn-te">తెలుగు</button>
+</div>
+
+<!-- Bottom Nav -->
+<nav>
+  <a href="#hero" class="nav-link" data-en="Home" data-te="హోమ్">Home</a>
+  <a href="#about" class="nav-link" data-en="About" data-te="గురించి">About</a>
+  <a href="#rules" class="nav-link" data-en="Guidelines" data-te="నియమాలు">Guidelines</a>
+  <a href="#book" class="nav-link" data-en="Book Appointment" data-te="అపాయింట్మెంట్">Book Appointment</a>
+</nav>
+
+<!-- ════════════════ HERO ════════════════ -->
+<section id="hero">
+  <!-- SVG Mandala -->
+  <svg class="mandala" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="#c8960c" stroke-width="1">
+      <circle cx="100" cy="100" r="90" stroke-width=".5" opacity=".4"/>
+      <circle cx="100" cy="100" r="70" stroke-width=".5" opacity=".5"/>
+      <circle cx="100" cy="100" r="50"/>
+      <circle cx="100" cy="100" r="30"/>
+      <circle cx="100" cy="100" r="10" fill="#c8960c" opacity=".7"/>
+      <!-- Petals -->
+      <ellipse cx="100" cy="65" rx="8" ry="28" opacity=".7"/>
+      <ellipse cx="100" cy="65" rx="8" ry="28" opacity=".7" transform="rotate(45 100 100)"/>
+      <ellipse cx="100" cy="65" rx="8" ry="28" opacity=".7" transform="rotate(90 100 100)"/>
+      <ellipse cx="100" cy="65" rx="8" ry="28" opacity=".7" transform="rotate(135 100 100)"/>
+      <ellipse cx="100" cy="65" rx="8" ry="28" opacity=".7" transform="rotate(180 100 100)"/>
+      <ellipse cx="100" cy="65" rx="8" ry="28" opacity=".7" transform="rotate(225 100 100)"/>
+      <ellipse cx="100" cy="65" rx="8" ry="28" opacity=".7" transform="rotate(270 100 100)"/>
+      <ellipse cx="100" cy="65" rx="8" ry="28" opacity=".7" transform="rotate(315 100 100)"/>
+      <!-- Outer dots -->
+      <circle cx="100" cy="10" r="3" fill="#f0c040" opacity=".8"/>
+      <circle cx="163.6" cy="45" r="3" fill="#f0c040" opacity=".8" transform="rotate(45 100 100)"/>
+      <circle cx="163.6" cy="45" r="3" fill="#f0c040" opacity=".8" transform="rotate(90 100 100)"/>
+      <circle cx="163.6" cy="45" r="3" fill="#f0c040" opacity=".8" transform="rotate(135 100 100)"/>
+      <circle cx="163.6" cy="45" r="3" fill="#f0c040" opacity=".8" transform="rotate(180 100 100)"/>
+      <circle cx="163.6" cy="45" r="3" fill="#f0c040" opacity=".8" transform="rotate(225 100 100)"/>
+      <circle cx="163.6" cy="45" r="3" fill="#f0c040" opacity=".8" transform="rotate(270 100 100)"/>
+      <circle cx="163.6" cy="45" r="3" fill="#f0c040" opacity=".8" transform="rotate(315 100 100)"/>
+    </g>
+    <text x="100" y="108" text-anchor="middle" font-size="22" fill="#f0c040" font-family="serif">ॐ</text>
+  </svg>
+
+  <div class="title-main" data-en="Sri Raghavendra Jyotishyam" data-te="శ్రీ రాఘవేంద్ర జ్యోతిష్యం">Sri Raghavendra Jyotishyam</div>
+  <div class="title-tel" data-en="Vedic Astrology &amp; Life Guidance" data-te="వేద జ్యోతిషం &amp; జీవిత మార్గదర్శనం">Vedic Astrology &amp; Life Guidance</div>
+  <div class="hero-sub" data-en="Blessed with divine knowledge spanning generations — guiding families with truth, tradition, and compassion." data-te="తరతరాలుగా దైవ జ్ఞానంతో ఆశీర్వదించబడ్డారు — సత్యం, సంప్రదాయం మరియు కరుణతో కుటుంబాలకు మార్గనిర్దేశం చేస్తున్నారు.">Blessed with divine knowledge spanning generations — guiding families with truth, tradition, and compassion.</div>
+
+  <div class="divider"></div>
+
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">30+</div>
+      <div class="stat-lbl" data-en="Years of Service" data-te="సేవా సంవత్సరాలు">Years of Service</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">200+</div>
+      <div class="stat-lbl" data-en="Visitors per Day" data-te="రోజుకు సందర్శకులు">Visitors per Day</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">∞</div>
+      <div class="stat-lbl" data-en="Blessings Given" data-te="ఇచ్చిన ఆశీర్వాదాలు">Blessings Given</div>
+    </div>
+  </div>
+
+  <div class="scroll-cta">
+    <span data-en="Scroll to book your appointment" data-te="అపాయింట్మెంట్ బుక్ చేసుకోండి">Scroll to book your appointment</span>
+    <span class="arrow">↓</span>
+  </div>
+</section>
+
+<!-- ════════════════ ABOUT ════════════════ -->
+<section id="about">
+  <div class="section-head">
+    <div class="section-eyebrow" data-en="The Astrologer" data-te="జ్యోతిష్కుడు">The Astrologer</div>
+    <div class="section-title" data-en="Sri Raghavendra Sharma" data-te="శ్రీ రాఘవేంద్ర శర్మ">Sri Raghavendra Sharma</div>
+    <div class="section-title-tel" data-en="Vedic Scholar &amp; Jyotishi" data-te="వేద పండితుడు &amp; జ్యోతిష్కుడు">Vedic Scholar &amp; Jyotishi</div>
+  </div>
+  <div class="about-grid">
+    <div class="about-card">
+      <p data-en="Sri Raghavendra Sharma has been serving the community for over three decades, offering guidance rooted in traditional Vedic astrology and sacred scriptures."
+         data-te="శ్రీ రాఘవేంద్ర శర్మ మూడు దశాబ్దాలకు పైగా సమాజానికి సేవ చేస్తున్నారు, సాంప్రదాయ వేద జ్యోతిషం మరియు పవిత్ర గ్రంధాల ఆధారంగా మార్గదర్శనం అందిస్తున్నారు.">
+        Sri Raghavendra Sharma has been serving the community for over three decades, offering guidance rooted in traditional Vedic astrology and sacred scriptures.
+      </p>
+      <p data-en="His consultations cover life events, marriage compatibility, career direction, health concerns, and family welfare — always guided by dharma."
+         data-te="అతని సంప్రదింపులు జీవిత సంఘటనలు, వివాహ అనుకూలత, కెరీర్ దిశ, ఆరోగ్య సమస్యలు మరియు కుటుంబ సంక్షేమాన్ని కవర్ చేస్తాయి — ఎల్లప్పుడూ ధర్మం ద్వారా మార్గనిర్దేశం చేయబడతాయి.">
+        His consultations cover life events, marriage compatibility, career direction, health concerns, and family welfare — always guided by dharma.
+      </p>
+    </div>
+    <div class="about-card">
+      <p data-en="Consultations are conducted in-person only. Please arrive at least 15 minutes before your scheduled time. Bring a valid ID and your birth details."
+         data-te="సంప్రదింపులు వ్యక్తిగతంగా మాత్రమే నిర్వహించబడతాయి. మీ నిర్ధారిత సమయానికి కనీసం 15 నిమిషాల ముందు రావాలి. చెల్లుబాటు అయ్యే గుర్తింపు పత్రం మరియు మీ పుట్టిన వివరాలను తీసుకొని రండి.">
+        Consultations are conducted in-person only. Please arrive at least 15 minutes before your scheduled time. Bring a valid ID and your birth details.
+      </p>
+      <p data-en="Appointments are accepted one day in advance only. Same-day walk-ins are not guaranteed. Please book early to secure your slot."
+         data-te="అపాయింట్మెంట్లు ఒక రోజు ముందు మాత్రమే అంగీకరించబడతాయి. అదే రోజు వచ్చేవారికి హామీ లేదు. మీ స్లాట్ నిర్ధారించుకోవడానికి దయచేసి ముందే బుక్ చేసుకోండి.">
+        Appointments are accepted one day in advance only. Same-day walk-ins are not guaranteed. Please book early to secure your slot.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ RULES ════════════════ -->
+<section id="rules">
+  <div class="section-head">
+    <div class="section-eyebrow" data-en="Before You Visit" data-te="సందర్శించే ముందు">Before You Visit</div>
+    <div class="section-title" data-en="Guidelines &amp; Dress Code" data-te="నియమాలు &amp; దుస్తుల నియమావళి">Guidelines &amp; Dress Code</div>
+  </div>
+
+  <div class="rules-grid">
+    <div class="rule-card">
+      <div class="rule-icon">👗</div>
+      <div>
+        <div class="rule-title" data-en="Women's Dress Code" data-te="మహిళల దుస్తుల నియమావళి">Women's Dress Code</div>
+        <div class="rule-desc" data-en="Wear traditional attire — saree or salwar kameez. Hair must be neatly tied. Bangles should be worn. Avoid Western clothing." data-te="సాంప్రదాయ దుస్తులు ధరించాలి — చీర లేదా సల్వార్ కమీజ్. జుట్టు చక్కగా ముడివేసి ఉండాలి. గాజులు వేసుకోవాలి. పాశ్చాత్య దుస్తులు నివారించాలి.">Wear traditional attire — saree or salwar kameez. Hair must be neatly tied. Bangles should be worn. Avoid Western clothing.</div>
+      </div>
+    </div>
+    <div class="rule-card">
+      <div class="rule-icon">🧔</div>
+      <div>
+        <div class="rule-title" data-en="Men's Dress Code" data-te="పురుషుల దుస్తుల నియమావళి">Men's Dress Code</div>
+        <div class="rule-desc" data-en="Wear clean, modest clothing. Dhoti or formal wear preferred. Remove footwear before entering. No shorts or sleeveless." data-te="శుభ్రమైన, మర్యాదగల దుస్తులు ధరించాలి. ధోతీ లేదా అధికారిక దుస్తులు ప్రాధాన్యత. లోపలికి ప్రవేశించే ముందు పాదరక్షలు తీసివేయాలి. నిక్కర్లు లేదా స్లీవ్‌లెస్ వద్దు.">Wear clean, modest clothing. Dhoti or formal wear preferred. Remove footwear before entering. No shorts or sleeveless.</div>
+      </div>
+    </div>
+    <div class="rule-card">
+      <div class="rule-icon">🕐</div>
+      <div>
+        <div class="rule-title" data-en="Visiting Hours" data-te="సందర్శన సమయాలు">Visiting Hours</div>
+        <div class="rule-desc" data-en="Morning session: 6:00 AM – 12:00 PM. Evening session: 4:00 PM – 7:00 PM. No consultations on amavasya and marked days." data-te="ఉదయపు సెషన్: ఉదయం 6:00 – మధ్యాహ్నం 12:00. సాయంకాలం సెషన్: సాయంత్రం 4:00 – 7:00. అమావాస్య మరియు గుర్తించిన రోజులలో సంప్రదింపులు లేవు.">Morning session: 6:00 AM – 12:00 PM. Evening session: 4:00 PM – 7:00 PM. No consultations on amavasya and marked days.</div>
+      </div>
+    </div>
+    <div class="rule-card">
+      <div class="rule-icon">🙏</div>
+      <div>
+        <div class="rule-title" data-en="Conduct &amp; Respect" data-te="నడవడిక &amp; గౌరవం">Conduct &amp; Respect</div>
+        <div class="rule-desc" data-en="Maintain silence. No phones during consultation. Speak truthfully. Come with a pure heart and respectful intent." data-te="మౌనం పాటించాలి. సంప్రదింపు సమయంలో ఫోన్లు వద్దు. సత్యంగా మాట్లాడాలి. స్వచ్ఛమైన హృదయంతో మరియు గౌరవ ఉద్దేశంతో రావాలి.">Maintain silence. No phones during consultation. Speak truthfully. Come with a pure heart and respectful intent.</div>
+      </div>
+    </div>
+    <div class="rule-card">
+      <div class="rule-icon">📋</div>
+      <div>
+        <div class="rule-title" data-en="What to Bring" data-te="ఏమి తీసుకొని రావాలి">What to Bring</div>
+        <div class="rule-desc" data-en="Birth date, birth time, and birth place of the person. For marriage queries, bring details of both individuals." data-te="వ్యక్తి పుట్టిన తేదీ, పుట్టిన సమయం మరియు పుట్టిన స్థలం. వివాహ ప్రశ్నల కోసం, ఇద్దరి వివరాలు తీసుకొని రండి.">Birth date, birth time, and birth place of the person. For marriage queries, bring details of both individuals.</div>
+      </div>
+    </div>
+    <div class="rule-card">
+      <div class="rule-icon">🚫</div>
+      <div>
+        <div class="rule-title" data-en="Not Permitted" data-te="అనుమతి లేనివి">Not Permitted</div>
+        <div class="rule-desc" data-en="No recording of any kind. No arguments or confrontation. Children below 10 years should be accompanied by an adult." data-te="ఎటువంటి రికార్డింగ్ అనుమతించబడదు. వాదనలు లేదా ఘర్షణ వద్దు. 10 సంవత్సరాల వయసు లోపు పిల్లలు పెద్దవారితో రావాలి.">No recording of any kind. No arguments or confrontation. Children below 10 years should be accompanied by an adult.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Blocked Days -->
+  <div class="blocked-days">
+    <div class="blocked-title" data-en="⚠️ No Consultations on These Days" data-te="⚠️ ఈ రోజులలో సంప్రదింపులు లేవు">⚠️ No Consultations on These Days</div>
+    <div style="color:var(--muted); font-size:.9rem;" data-en="Appointments cannot be booked on the following days. The system will automatically block these." data-te="క్రింది రోజులలో అపాయింట్మెంట్లు బుక్ చేయడం సాధ్యం కాదు. సిస్టమ్ వీటిని స్వయంచాలకంగా బ్లాక్ చేస్తుంది.">Appointments cannot be booked on the following days. The system will automatically block these.</div>
+    <div class="blocked-list">
+      <span class="blocked-tag" data-en="Amavasya (New Moon)" data-te="అమావాస్య (అమావాస్య)">Amavasya (New Moon)</span>
+      <span class="blocked-tag" data-en="Sundays" data-te="ఆదివారాలు">Sundays</span>
+      <span class="blocked-tag" data-en="Ekadashi" data-te="ఏకాదశి">Ekadashi</span>
+      <span class="blocked-tag" data-en="Karthika Masam (no evenings)" data-te="కార్తీక మాసం (సాయంకాలాలు లేవు)">Karthika Masam (no evenings)</span>
+      <span class="blocked-tag" data-en="Festival Days" data-te="పండుగ రోజులు">Festival Days</span>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ BOOK ════════════════ -->
+<section id="book">
+  <div class="section-head">
+    <div class="section-eyebrow" data-en="Schedule Your Visit" data-te="మీ సందర్శనను షెడ్యూల్ చేయండి">Schedule Your Visit</div>
+    <div class="section-title" data-en="Book an Appointment" data-te="అపాయింట్మెంట్ బుక్ చేయండి">Book an Appointment</div>
+    <div class="section-title-tel" data-en="Appointments open one day in advance" data-te="అపాయింట్మెంట్లు ఒక రోజు ముందు తెరవబడతాయి">Appointments open one day in advance</div>
+  </div>
+
+  <div class="form-wrapper">
+    <div class="form-grid" id="appt-form">
+
+      <!-- Full Name -->
+      <div class="form-group">
+        <label data-en="Full Name *" data-te="పూర్తి పేరు *">Full Name *</label>
+        <input type="text" id="f-name" placeholder="Enter your full name" required />
+      </div>
+
+      <!-- Phone -->
+      <div class="form-group">
+        <label data-en="Phone Number *" data-te="ఫోన్ నంబర్ *">Phone Number *</label>
+        <input type="tel" id="f-phone" placeholder="+91 XXXXX XXXXX" required />
+      </div>
+
+      <!-- Date -->
+      <div class="form-group">
+        <label data-en="Preferred Date *" data-te="ఇష్టపడిన తేదీ *">Preferred Date *</label>
+        <input type="date" id="f-date" required />
+      </div>
+
+      <!-- Session -->
+      <div class="form-group">
+        <label data-en="Session *" data-te="సెషన్ *">Session *</label>
+        <select id="f-session">
+          <option value="" data-en="-- Select session --" data-te="-- సెషన్ ఎంచుకోండి --">-- Select session --</option>
+          <option value="Morning (6 AM – 12 PM)" data-en="Morning (6 AM – 12 PM)" data-te="ఉదయం (6 AM – 12 PM)">Morning (6 AM – 12 PM)</option>
+          <option value="Evening (4 PM – 7 PM)" data-en="Evening (4 PM – 7 PM)" data-te="సాయంత్రం (4 PM – 7 PM)">Evening (4 PM – 7 PM)</option>
+        </select>
+      </div>
+
+      <!-- Village -->
+      <div class="form-group">
+        <label data-en="Village / Town" data-te="గ్రామం / పట్టణం">Village / Town</label>
+        <input type="text" id="f-village" placeholder="Your village or town" />
+      </div>
+
+      <!-- Gender -->
+      <div class="form-group">
+        <label data-en="Gender *" data-te="లింగం *">Gender *</label>
+        <div class="gender-group">
+          <button class="gender-btn" data-val="Male" onclick="selectGender(this)" data-en="Male" data-te="పురుషుడు">Male</button>
+          <button class="gender-btn" data-val="Female" onclick="selectGender(this)" data-en="Female" data-te="స్త్రీ">Female</button>
+          <button class="gender-btn" data-val="Other" onclick="selectGender(this)" data-en="Other" data-te="ఇతర">Other</button>
+        </div>
+        <!-- Female reminder -->
+        <div id="female-rules" data-en="👗 Reminder for women: Please wear a saree or salwar kameez, tie your hair neatly, and wear bangles before visiting." data-te="👗 మహిళలకు గుర్తుచేయండి: దయచేసి చీర లేదా సల్వార్ కమీజ్ ధరించండి, జుట్టు చక్కగా ముడివేయండి, మరియు సందర్శించే ముందు గాజులు వేసుకోండి.">
+          👗 Reminder for women: Please wear a saree or salwar kameez, tie your hair neatly, and wear bangles before visiting.
+        </div>
+      </div>
+
+      <!-- Purpose -->
+      <div class="form-group full">
+        <label data-en="Purpose of Visit *" data-te="సందర్శన ఉద్దేశ్యం *">Purpose of Visit *</label>
+        <select id="f-purpose">
+          <option value="" data-en="-- Select purpose --" data-te="-- ఉద్దేశ్యం ఎంచుకోండి --">-- Select purpose --</option>
+          <option value="Marriage / Compatibility" data-en="Marriage / Compatibility" data-te="వివాహం / అనుకూలత">Marriage / Compatibility</option>
+          <option value="Career / Business" data-en="Career / Business" data-te="కెరీర్ / వ్యాపారం">Career / Business</option>
+          <option value="Health &amp; Wellbeing" data-en="Health &amp; Wellbeing" data-te="ఆరోగ్యం &amp; సంక్షేమం">Health &amp; Wellbeing</option>
+          <option value="Child &amp; Family" data-en="Child &amp; Family" data-te="పిల్లలు &amp; కుటుంబం">Child &amp; Family</option>
+          <option value="Property / Finance" data-en="Property / Finance" data-te="ఆస్తి / ఆర్థిక విషయాలు">Property / Finance</option>
+          <option value="Dosha / Remedy" data-en="Dosha / Remedy" data-te="దోష నివారణ">Dosha / Remedy</option>
+          <option value="General Consultation" data-en="General Consultation" data-te="సాధారణ సంప్రదింపు">General Consultation</option>
+          <option value="Other" data-en="Other" data-te="ఇతర">Other</option>
+        </select>
+      </div>
+
+      <!-- Birth details -->
+      <div class="form-group">
+        <label data-en="Date of Birth" data-te="పుట్టిన తేదీ">Date of Birth</label>
+        <input type="date" id="f-dob" />
+      </div>
+
+      <div class="form-group">
+        <label data-en="Birth Time (if known)" data-te="పుట్టిన సమయం (తెలిస్తే)">Birth Time (if known)</label>
+        <input type="time" id="f-btime" />
+      </div>
+
+      <div class="form-group full">
+        <label data-en="Birth Place" data-te="పుట్టిన స్థలం">Birth Place</label>
+        <input type="text" id="f-bplace" placeholder="City / Village" />
+      </div>
+
+      <!-- Notes -->
+      <div class="form-group full">
+        <label data-en="Additional Notes" data-te="అదనపు గమనికలు">Additional Notes</label>
+        <textarea id="f-notes" placeholder="Any additional information..."></textarea>
+      </div>
+
+      <!-- Checkbox agreement -->
+      <div class="form-group full" style="flex-direction:row; align-items:flex-start; gap:10px;">
+        <input type="checkbox" id="f-agree" style="width:auto; margin-top:4px; flex-shrink:0;" />
+        <label for="f-agree" style="text-transform:none; letter-spacing:0; font-size:.92rem; cursor:pointer; color:var(--muted);"
+          data-en="I have read and agree to follow all guidelines and dress code requirements stated above."
+          data-te="నేను పైన పేర్కొన్న అన్ని నియమాలు మరియు దుస్తుల నియమావళిని చదివి అంగీకరించాను.">
+          I have read and agree to follow all guidelines and dress code requirements stated above.
+        </label>
+      </div>
+
+    </div><!-- /.form-grid -->
+
+    <div id="error-msg"></div>
+
+    <button class="submit-btn" onclick="submitAppointment()" id="submit-btn"
+      data-en="✦ Confirm Appointment ✦" data-te="✦ అపాయింట్మెంట్ నిర్ధారించండి ✦">
+      ✦ Confirm Appointment ✦
+    </button>
+  </div>
+
+  <!-- Success -->
+  <div id="success-msg">
+    <div class="success-icon">🙏</div>
+    <div class="success-title" data-en="Appointment Confirmed!" data-te="అపాయింట్మెంట్ నిర్ధారించబడింది!">Appointment Confirmed!</div>
+    <div class="success-sub" id="success-details"></div>
+    <div>
+      <div style="margin-top:14px; color:var(--muted); font-size:.88rem;"
+        data-en="Your Token Number" data-te="మీ టోకెన్ నంబర్">Your Token Number</div>
+      <div class="token-badge" id="token-display">—</div>
+    </div>
+    <div style="margin-top:20px; color:var(--muted); font-size:.88rem;"
+      data-en="Please save this token number and arrive 15 minutes before your session."
+      data-te="ఈ టోకెన్ నంబర్ సేవ్ చేసుకోండి మరియు మీ సెషన్‌కు 15 నిమిషాల ముందు రండి.">
+      Please save this token number and arrive 15 minutes before your session.
+    </div>
+    <button onclick="resetForm()" style="margin-top:20px; background:transparent; border:1px solid var(--border); color:var(--muted); padding:10px 24px; border-radius:4px; cursor:pointer; font-family:inherit;"
+      data-en="Book Another Appointment" data-te="మరో అపాయింట్మెంట్ బుక్ చేయండి">
+      Book Another Appointment
+    </button>
+  </div>
+
+</section>
+
+<!-- ════════════════ FOOTER ════════════════ -->
+<footer>
+  <div style="font-family:'Cinzel Decorative',serif; color:var(--gold); font-size:1rem; margin-bottom:8px;"
+    data-en="Sri Raghavendra Jyotishyam" data-te="శ్రీ రాఘవేంద్ర జ్యోతిష్యం">Sri Raghavendra Jyotishyam</div>
+  <div data-en="Vedic Astrology &amp; Guidance — Serving the community with devotion" data-te="వేద జ్యోతిషం &amp; మార్గదర్శనం — భక్తితో సమాజానికి సేవ చేస్తున్నారు">Vedic Astrology &amp; Guidance — Serving the community with devotion</div>
+  <div style="margin-top:8px; font-size:.8rem; color:#5a4820;">© 2025 Sri Raghavendra Jyotishyam. All rights reserved.</div>
+</footer>
+
+<!-- ════════════════ ADMIN TRIGGER ════════════════ -->
+<button id="admin-trigger" onclick="openAdminLogin()"
+  data-en="🔐 Astrologer Login" data-te="🔐 జ్యోతిష్కుడి లాగిన్">🔐 Astrologer Login</button>
+
+<!-- ════════════════ ADMIN LOGIN ════════════════ -->
+<div id="admin-login">
+  <div class="login-box">
+    <h2 data-en="Admin Access" data-te="అడ్మిన్ యాక్సెస్">Admin Access</h2>
+    <input type="password" id="admin-pwd" placeholder="••••••••" onkeydown="if(event.key==='Enter')checkAdminLogin()" />
+    <button class="login-btn" onclick="checkAdminLogin()" data-en="Enter" data-te="ప్రవేశించు">Enter</button>
+    <div class="login-err" id="login-err" data-en="Incorrect password. Try again." data-te="తప్పు పాస్‌వర్డ్. మళ్ళీ ప్రయత్నించండి.">Incorrect password. Try again.</div>
+    <div style="margin-top:14px;">
+      <button onclick="closeAdminLogin()" style="background:transparent;border:none;color:var(--muted);cursor:pointer;font-family:inherit;font-size:.85rem;"
+        data-en="← Back" data-te="← వెనక్కి">← Back</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ ADMIN PANEL ════════════════ -->
+<div id="admin">
+  <div class="admin-inner">
+    <div class="admin-header">
+      <div class="admin-title" data-en="📋 Appointment Dashboard" data-te="📋 అపాయింట్మెంట్ డాష్‌బోర్డ్">📋 Appointment Dashboard</div>
+      <button class="admin-close" onclick="closeAdmin()" data-en="✕ Close" data-te="✕ మూసివేయి">✕ Close</button>
+    </div>
+
+    <div class="filter-row">
+      <div>
+        <label style="font-size:.8rem;color:var(--gold);display:block;margin-bottom:5px;" data-en="Filter by Date" data-te="తేదీ ద్వారా వడపోత">Filter by Date</label>
+        <input type="date" id="admin-date-filter" />
+      </div>
+      <div>
+        <label style="font-size:.8rem;color:var(--gold);display:block;margin-bottom:5px;" data-en="Filter by Session" data-te="సెషన్ ద్వారా వడపోత">Filter by Session</label>
+        <select id="admin-session-filter">
+          <option value="" data-en="All Sessions" data-te="అన్ని సెషన్లు">All Sessions</option>
+          <option value="Morning" data-en="Morning" data-te="ఉదయం">Morning</option>
+          <option value="Evening" data-en="Evening" data-te="సాయంత్రం">Evening</option>
+        </select>
+      </div>
+      <button class="filter-btn" onclick="loadAdminData()" data-en="🔄 Refresh" data-te="🔄 రిఫ్రెష్">🔄 Refresh</button>
+      <button class="filter-btn" onclick="exportCSV()" style="background:linear-gradient(135deg,#2d7a3e,#1f5a2c);" data-en="⬇ Export CSV" data-te="⬇ CSV ఎగుమతి">⬇ Export CSV</button>
+    </div>
+
+    <div id="admin-summary" style="display:flex;gap:20px;flex-wrap:wrap;margin-bottom:24px;"></div>
+
+    <div style="overflow-x:auto;">
+      <table id="appt-table">
+        <thead>
+          <tr>
+            <th data-en="Token" data-te="టోకెన్">Token</th>
+            <th data-en="Name" data-te="పేరు">Name</th>
+            <th data-en="Phone" data-te="ఫోన్">Phone</th>
+            <th data-en="Date" data-te="తేదీ">Date</th>
+            <th data-en="Session" data-te="సెషన్">Session</th>
+            <th data-en="Gender" data-te="లింగం">Gender</th>
+            <th data-en="Village" data-te="గ్రామం">Village</th>
+            <th data-en="Purpose" data-te="ఉద్దేశ్యం">Purpose</th>
+            <th data-en="Birth Date" data-te="జన్మ తేదీ">Birth Date</th>
+            <th data-en="Birth Time" data-te="జన్మ సమయం">Birth Time</th>
+            <th data-en="Birth Place" data-te="జన్మ స్థలం">Birth Place</th>
+            <th data-en="Notes" data-te="గమనికలు">Notes</th>
+          </tr>
+        </thead>
+        <tbody id="appt-tbody"></tbody>
+      </table>
+    </div>
+    <div id="admin-empty" style="text-align:center;padding:40px;color:var(--muted);display:none;"
+      data-en="No appointments found for the selected filters."
+      data-te="ఎంచుకున్న ఫిల్టర్‌లకు అపాయింట్మెంట్లు కనుగొనబడలేదు.">No appointments found for the selected filters.</div>
+  </div>
+</div>
+
+<!-- ════════════════ SCRIPT ════════════════ -->
+<script>
+// ─────────────────────────────────────────────────────────────────
+// CONFIGURATION — Edit these values
+// ─────────────────────────────────────────────────────────────────
+const CONFIG = {
+  // After deploying Google Apps Script, paste the Web App URL here:
+  GOOGLE_SHEET_URL: 'https://script.google.com/macros/s/AKfycbwtu1WunrihbQYyfsyLcSyW4LF3Ou4GHncw2WbJtYdLGif8K_law9u7CK4Her6ooffx/exec',
+
+  // Admin password (change this!)
+  ADMIN_PASSWORD: 'astro2025',
+
+  // Days of week blocked (0=Sun,1=Mon,...,6=Sat)
+  BLOCKED_WEEKDAYS: [0], // Sundays
+
+  // How many days ahead bookings open (1 = only tomorrow)
+  BOOKING_WINDOW_DAYS: 1,
+};
+
+// ─────────────────────────────────────────────────────────────────
+// LANGUAGE SYSTEM
+// ─────────────────────────────────────────────────────────────────
+let currentLang = 'en';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('[data-en]').forEach(el => {
+    const val = el.getAttribute('data-' + lang);
+    if (!val) return;
+    if (el.tagName === 'INPUT' && el.type === 'text') {
+      el.placeholder = lang === 'te'
+        ? el.getAttribute('data-te-placeholder') || el.placeholder
+        : el.getAttribute('data-en-placeholder') || el.placeholder;
+    } else {
+      el.innerHTML = val;
+    }
+  });
+  // Update select options
+  document.querySelectorAll('select option[data-' + lang + ']').forEach(opt => {
+    opt.text = opt.getAttribute('data-' + lang);
+  });
+  // Buttons
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.getElementById('btn-te').classList.toggle('active', lang === 'te');
+  document.documentElement.lang = lang === 'te' ? 'te' : 'en';
+}
+
+// ─────────────────────────────────────────────────────────────────
+// DATE SETUP — Only allow tomorrow
+// ─────────────────────────────────────────────────────────────────
+(function setupDate() {
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + CONFIG.BOOKING_WINDOW_DAYS);
+  const dateStr = tomorrow.toISOString().split('T')[0];
+  const dateInput = document.getElementById('f-date');
+  dateInput.value = dateStr;
+  dateInput.min = dateStr;
+  dateInput.max = new Date(Date.now() + 7 * 864e5).toISOString().split('T')[0];
+})();
+
+// ─────────────────────────────────────────────────────────────────
+// GENDER SELECTION
+// ─────────────────────────────────────────────────────────────────
+let selectedGender = '';
+function selectGender(btn) {
+  document.querySelectorAll('.gender-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  selectedGender = btn.dataset.val;
+  document.getElementById('female-rules').classList.toggle('show', selectedGender === 'Female');
+}
+
+// ─────────────────────────────────────────────────────────────────
+// BLOCKED DAYS CHECK
+// ─────────────────────────────────────────────────────────────────
+function isBlockedDay(dateStr) {
+  const d = new Date(dateStr + 'T00:00:00');
+  return CONFIG.BLOCKED_WEEKDAYS.includes(d.getDay());
+}
+
+// ─────────────────────────────────────────────────────────────────
+// TOKEN GENERATION
+// ─────────────────────────────────────────────────────────────────
+function generateToken() {
+  const now = new Date();
+  const pad = n => String(n).padStart(2, '0');
+  const prefix = pad(now.getMonth() + 1) + pad(now.getDate());
+  const rand = Math.floor(Math.random() * 900) + 100;
+  return 'JY' + prefix + rand;
+}
+
+// ─────────────────────────────────────────────────────────────────
+// SUBMIT APPOINTMENT
+// ─────────────────────────────────────────────────────────────────
+async function submitAppointment() {
+  const name    = document.getElementById('f-name').value.trim();
+  const phone   = document.getElementById('f-phone').value.trim();
+  const date    = document.getElementById('f-date').value;
+  const session = document.getElementById('f-session').value;
+  const purpose = document.getElementById('f-purpose').value;
+  const agree   = document.getElementById('f-agree').checked;
+  const errDiv  = document.getElementById('error-msg');
+  errDiv.classList.remove('show');
+
+  // Validation
+  const errors = [];
+  if (!name)    errors.push(currentLang === 'te' ? 'పూర్తి పేరు నమోదు చేయండి.' : 'Please enter your full name.');
+  if (!phone || !/^\+?[\d\s\-]{8,15}$/.test(phone))
+    errors.push(currentLang === 'te' ? 'సరైన ఫోన్ నంబర్ నమోదు చేయండి.' : 'Please enter a valid phone number.');
+  if (!date)    errors.push(currentLang === 'te' ? 'తేదీ ఎంచుకోండి.' : 'Please select a date.');
+  if (!session) errors.push(currentLang === 'te' ? 'సెషన్ ఎంచుకోండి.' : 'Please select a session.');
+  if (!selectedGender) errors.push(currentLang === 'te' ? 'లింగం ఎంచుకోండి.' : 'Please select your gender.');
+  if (!purpose) errors.push(currentLang === 'te' ? 'సందర్శన ఉద్దేశ్యం ఎంచుకోండి.' : 'Please select the purpose of visit.');
+  if (!agree)   errors.push(currentLang === 'te' ? 'నియమాలకు అంగీకరించాలి.' : 'Please agree to the guidelines before booking.');
+  if (date && isBlockedDay(date))
+    errors.push(currentLang === 'te' ? 'ఎంచుకున్న తేదీన సంప్రదింపులు లేవు. దయచేసి వేరే తేదీ ఎంచుకోండి.' : 'No consultations on the selected day. Please choose a different date.');
+
+  if (errors.length) {
+    errDiv.innerHTML = errors.map(e => `• ${e}`).join('<br>');
+    errDiv.classList.add('show');
+    errDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+
+  const token = generateToken();
+  const payload = {
+    token,
+    name,
+    phone,
+    date,
+    session,
+    gender: selectedGender,
+    village:  document.getElementById('f-village').value.trim(),
+    purpose,
+    dob:      document.getElementById('f-dob').value,
+    btime:    document.getElementById('f-btime').value,
+    bplace:   document.getElementById('f-bplace').value.trim(),
+    notes:    document.getElementById('f-notes').value.trim(),
+    timestamp: new Date().toISOString(),
+  };
+
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span>' + (currentLang === 'te' ? 'నిర్ధారిస్తున్నారు...' : 'Confirming...');
+
+  // Save locally for admin demo (and to Google Sheets if configured)
+  saveAppointmentLocally(payload);
+
+  if (CONFIG.GOOGLE_SHEET_URL && CONFIG.GOOGLE_SHEET_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE') {
+    try {
+      await fetch(CONFIG.GOOGLE_SHEET_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+    } catch(e) {
+      console.warn('Google Sheets sync failed (offline?). Data saved locally.', e);
+    }
+  }
+
+  // Show success
+  document.getElementById('appt-form').style.display = 'none';
+  document.getElementById('submit-btn').style.display = 'none';
+  document.getElementById('error-msg').classList.remove('show');
+
+  const successDetails = currentLang === 'te'
+    ? `<strong>${name}</strong> గారి అపాయింట్మెంట్ <strong>${date}</strong> తేదీన <strong>${session}</strong> కోసం నిర్ధారించబడింది.`
+    : `Appointment for <strong>${name}</strong> on <strong>${date}</strong> for the <strong>${session}</strong> session is confirmed.`;
+  document.getElementById('success-details').innerHTML = successDetails;
+  document.getElementById('token-display').textContent = token;
+  document.getElementById('success-msg').classList.add('show');
+  document.getElementById('success-msg').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+// ─────────────────────────────────────────────────────────────────
+// LOCAL STORAGE (fallback / demo)
+// ─────────────────────────────────────────────────────────────────
+function saveAppointmentLocally(payload) {
+  try {
+    const existing = JSON.parse(sessionStorage.getItem('jyotishyam_appts') || '[]');
+    existing.push(payload);
+    sessionStorage.setItem('jyotishyam_appts', JSON.stringify(existing));
+  } catch(e) {}
+}
+
+function getLocalAppointments() {
+  try {
+    return JSON.parse(sessionStorage.getItem('jyotishyam_appts') || '[]');
+  } catch(e) { return []; }
+}
+
+// ─────────────────────────────────────────────────────────────────
+// RESET FORM
+// ─────────────────────────────────────────────────────────────────
+function resetForm() {
+  document.getElementById('appt-form').style.display = '';
+  document.getElementById('submit-btn').style.display = '';
+  document.getElementById('submit-btn').disabled = false;
+  document.getElementById('submit-btn').innerHTML = currentLang === 'te' ? '✦ అపాయింట్మెంట్ నిర్ధారించండి ✦' : '✦ Confirm Appointment ✦';
+  document.getElementById('success-msg').classList.remove('show');
+  document.getElementById('error-msg').classList.remove('show');
+  document.querySelectorAll('.gender-btn').forEach(b => b.classList.remove('selected'));
+  selectedGender = '';
+  document.getElementById('f-name').value = '';
+  document.getElementById('f-phone').value = '';
+  document.getElementById('f-session').value = '';
+  document.getElementById('f-purpose').value = '';
+  document.getElementById('f-village').value = '';
+  document.getElementById('f-dob').value = '';
+  document.getElementById('f-btime').value = '';
+  document.getElementById('f-bplace').value = '';
+  document.getElementById('f-notes').value = '';
+  document.getElementById('f-agree').checked = false;
+  document.getElementById('female-rules').classList.remove('show');
+}
+
+// ─────────────────────────────────────────────────────────────────
+// ADMIN
+// ─────────────────────────────────────────────────────────────────
+function openAdminLogin() {
+  document.getElementById('admin-login').classList.add('open');
+  document.getElementById('admin-pwd').focus();
+}
+function closeAdminLogin() {
+  document.getElementById('admin-login').classList.remove('open');
+  document.getElementById('admin-pwd').value = '';
+  document.getElementById('login-err').style.display = 'none';
+}
+function checkAdminLogin() {
+  const pwd = document.getElementById('admin-pwd').value;
+  if (pwd === CONFIG.ADMIN_PASSWORD) {
+    closeAdminLogin();
+    document.getElementById('admin').classList.add('open');
+    loadAdminData();
+  } else {
+    document.getElementById('login-err').style.display = 'block';
+  }
+}
+function closeAdmin() {
+  document.getElementById('admin').classList.remove('open');
+}
+
+function loadAdminData() {
+  const dateFilter    = document.getElementById('admin-date-filter').value;
+  const sessionFilter = document.getElementById('admin-session-filter').value;
+
+  let appts = getLocalAppointments();
+
+  // Also try fetching from Google Sheet if configured
+  if (CONFIG.GOOGLE_SHEET_URL && CONFIG.GOOGLE_SHEET_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE') {
+    fetch(CONFIG.GOOGLE_SHEET_URL + '?action=list' + (dateFilter ? '&date=' + dateFilter : ''))
+      .then(r => r.json()).then(data => {
+        if (Array.isArray(data)) renderAdminTable(data, dateFilter, sessionFilter);
+      }).catch(() => renderAdminTable(appts, dateFilter, sessionFilter));
+  } else {
+    renderAdminTable(appts, dateFilter, sessionFilter);
+  }
+}
+
+function renderAdminTable(appts, dateFilter, sessionFilter) {
+  let filtered = appts;
+  if (dateFilter) filtered = filtered.filter(a => a.date === dateFilter);
+  if (sessionFilter) filtered = filtered.filter(a => a.session && a.session.startsWith(sessionFilter));
+
+  const tbody = document.getElementById('appt-tbody');
+  const empty = document.getElementById('admin-empty');
+
+  // Summary
+  const sumDiv = document.getElementById('admin-summary');
+  sumDiv.innerHTML = `
+    <div style="background:rgba(200,150,12,.1);border:1px solid var(--border);border-radius:6px;padding:14px 20px;min-width:140px;text-align:center;">
+      <div style="font-family:'Cinzel Decorative',serif;font-size:1.6rem;color:var(--gold2);">${filtered.length}</div>
+      <div style="font-size:.8rem;color:var(--muted);">${currentLang==='te'?'మొత్తం అపాయింట్మెంట్లు':'Total Appointments'}</div>
+    </div>
+    <div style="background:rgba(50,100,200,.1);border:1px solid var(--border);border-radius:6px;padding:14px 20px;min-width:140px;text-align:center;">
+      <div style="font-family:'Cinzel Decorative',serif;font-size:1.6rem;color:#80aaff;">${filtered.filter(a=>a.gender==='Male').length}</div>
+      <div style="font-size:.8rem;color:var(--muted);">${currentLang==='te'?'పురుషులు':'Male'}</div>
+    </div>
+    <div style="background:rgba(200,80,120,.1);border:1px solid var(--border);border-radius:6px;padding:14px 20px;min-width:140px;text-align:center;">
+      <div style="font-family:'Cinzel Decorative',serif;font-size:1.6rem;color:#ff90b8;">${filtered.filter(a=>a.gender==='Female').length}</div>
+      <div style="font-size:.8rem;color:var(--muted);">${currentLang==='te'?'స్త్రీలు':'Female'}</div>
+    </div>
+  `;
+
+  if (!filtered.length) {
+    tbody.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+
+  tbody.innerHTML = filtered.map(a => `
+    <tr>
+      <td style="font-family:'Cinzel Decorative',serif;color:var(--gold);font-size:.8rem;">${a.token||'—'}</td>
+      <td style="font-weight:600;color:var(--cream);">${esc(a.name)}</td>
+      <td>${esc(a.phone)}</td>
+      <td>${a.date||'—'}</td>
+      <td>${esc(a.session)||'—'}</td>
+      <td><span class="badge ${a.gender==='Female'?'badge-f':'badge-m'}">${esc(a.gender)||'—'}</span></td>
+      <td>${esc(a.village)||'—'}</td>
+      <td style="max-width:140px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${esc(a.purpose)||'—'}</td>
+      <td>${a.dob||'—'}</td>
+      <td>${a.btime||'—'}</td>
+      <td>${esc(a.bplace)||'—'}</td>
+      <td style="max-width:120px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${esc(a.notes)||'—'}</td>
+    </tr>
+  `).join('');
+}
+
+function esc(str) {
+  if (!str) return '';
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// ─────────────────────────────────────────────────────────────────
+// EXPORT CSV
+// ─────────────────────────────────────────────────────────────────
+function exportCSV() {
+  const appts = getLocalAppointments();
+  if (!appts.length) { alert('No data to export.'); return; }
+  const headers = ['Token','Name','Phone','Date','Session','Gender','Village','Purpose','DOB','Birth Time','Birth Place','Notes','Timestamp'];
+  const rows = appts.map(a => [a.token,a.name,a.phone,a.date,a.session,a.gender,a.village,a.purpose,a.dob,a.btime,a.bplace,a.notes,a.timestamp]
+    .map(v => '"' + (v||'').replace(/"/g,'""') + '"').join(','));
+  const csv = [headers.join(','), ...rows].join('\n');
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url;
+  a.download = 'appointments_' + new Date().toISOString().split('T')[0] + '.csv';
+  a.click(); URL.revokeObjectURL(url);
+}
+
+// ─────────────────────────────────────────────────────────────────
+// BLOCKED DAY UI — highlight in date picker
+// ─────────────────────────────────────────────────────────────────
+document.getElementById('f-date').addEventListener('change', function() {
+  const errDiv = document.getElementById('error-msg');
+  if (this.value && isBlockedDay(this.value)) {
+    const msg = currentLang === 'te'
+      ? '⚠️ ఈ తేదీన (ఆదివారం/అమావాస్య) సంప్రదింపులు లేవు. దయచేసి వేరే తేదీ ఎంచుకోండి.'
+      : '⚠️ No consultations on this day (Sunday/Amavasya). Please pick a different date.';
+    errDiv.innerHTML = msg;
+    errDiv.classList.add('show');
+  } else {
+    errDiv.classList.remove('show');
+  }
+});
+
+// Smooth scroll for nav links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
+</body>
+</html>
