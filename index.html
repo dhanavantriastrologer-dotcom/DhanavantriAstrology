@@ -1061,14 +1061,28 @@ function closeAdmin() {
 }
 
 function loadAdminData() {
-  const dateFilter    = document.getElementById('admin-date-filter').value;
-  const sessionFilter = document.getElementById('admin-session-filter').value;
+  document.getElementById('admin-date-filter')
+  .addEventListener('change', loadAdminData);
 
+  document.getElementById('admin-session-filter')
+  .addEventListener('change', loadAdminData);
+  
+
+  
   let appts = getLocalAppointments();
 
   // Also try fetching from Google Sheet if configured
   if (CONFIG.GOOGLE_SHEET_URL && CONFIG.GOOGLE_SHEET_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE') {
-    fetch(CONFIG.GOOGLE_SHEET_URL + '?action=list' + (dateFilter ? '&date=' + dateFilter : ''))
+    fetch(
+  CONFIG.GOOGLE_SHEET_URL +
+  '?action=list' +
+  (dateFilter
+      ? '&date=' + encodeURIComponent(dateFilter)
+      : '') +
+  (sessionFilter
+      ? '&session=' + encodeURIComponent(sessionFilter)
+      : '')
+)
       .then(r => r.json()).then(data => {
         if (Array.isArray(data)) renderAdminTable(data, dateFilter, sessionFilter);
       }).catch(() => renderAdminTable(appts, dateFilter, sessionFilter));
@@ -1079,14 +1093,41 @@ function loadAdminData() {
 
 function renderAdminTable(appts, dateFilter, sessionFilter) {
   let filtered = appts;
-  if (dateFilter) filtered = filtered.filter(a => a.date === dateFilter);
-  if (sessionFilter) filtered = filtered.filter(a => a.session && a.session.startsWith(sessionFilter));
+if (dateFilter) {
+  filtered = filtered.filter(a => {
+    if (!a.date) return false;
 
+    const recordDate =
+      String(a.date).substring(0, 10);
+
+    return recordDate === dateFilter;
+  });
+}
+if (sessionFilter) {
+  filtered = filtered.filter(a => {
+    if (!a.session) return false;
+
+    return a.session.toLowerCase()
+      .includes(sessionFilter.toLowerCase());
+  });
+}
   const tbody = document.getElementById('appt-tbody');
   const empty = document.getElementById('admin-empty');
 
   // Summary
   const sumDiv = document.getElementById('admin-summary');
+  const morningCount =
+  filtered.filter(x =>
+    x.session &&
+    x.session.includes('Morning')
+  ).length;
+
+  const eveningCount =
+  filtered.filter(x =>
+    x.session &&
+    x.session.includes('Evening')
+  ).length;
+  
   sumDiv.innerHTML = `
     <div style="background:rgba(200,150,12,.1);border:1px solid var(--border);border-radius:6px;padding:14px 20px;min-width:140px;text-align:center;">
       <div style="font-family:'Cinzel Decorative',serif;font-size:1.6rem;color:var(--gold2);">${filtered.length}</div>
@@ -1100,6 +1141,52 @@ function renderAdminTable(appts, dateFilter, sessionFilter) {
       <div style="font-family:'Cinzel Decorative',serif;font-size:1.6rem;color:#ff90b8;">${filtered.filter(a=>a.gender==='Female').length}</div>
       <div style="font-size:.8rem;color:var(--muted);">${currentLang==='te'?'స్త్రీలు':'Female'}</div>
     </div>
+    <div style="
+        background:rgba(50,100,200,.1);
+        border:1px solid var(--border);
+        border-radius:6px;
+        padding:14px 20px;
+        min-width:140px;
+        text-align:center;
+        ">
+      <div style="
+        font-family:'Cinzel Decorative',serif;
+        font-size:1.6rem;
+        color:#80aaff;
+  ">
+    ${morningCount}
+  </div>
+  <div style="
+    font-size:.8rem;
+    color:var(--muted);
+  ">
+    Morning
+  </div>
+</div>
+
+    <div style="
+    background:rgba(200,80,120,.1);
+    border:1px solid var(--border);
+    border-radius:6px;
+    padding:14px 20px;
+    min-width:140px;
+    text-align:center;
+    ">
+  <div style="
+    font-family:'Cinzel Decorative',serif;
+    font-size:1.6rem;
+    color:#ff90b8;
+  ">
+    ${eveningCount}
+  </div>
+
+  <div style="
+    font-size:.8rem;
+    color:var(--muted);
+  ">
+    Evening
+  </div>
+</div>
   `;
 
   if (!filtered.length) {
