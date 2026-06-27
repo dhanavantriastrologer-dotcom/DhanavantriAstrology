@@ -320,6 +320,57 @@
     .badge-m { background: rgba(50,100,200,.2); color: #80aaff; border: 1px solid rgba(50,100,200,.3); }
     .badge-f { background: rgba(200,80,120,.2); color: #ff90b8; border: 1px solid rgba(200,80,120,.3); }
 
+
+    .status-pill {
+      display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: .78rem;
+      border: 1px solid var(--border); white-space: nowrap;
+    }
+    .status-pending { background: rgba(200,150,12,.16); color: var(--gold2); border-color: rgba(200,150,12,.45); }
+    .status-approved { background: rgba(45,122,62,.18); color: #6dbd80; border-color: rgba(45,122,62,.5); }
+    .status-rejected { background: rgba(184,50,32,.16); color: #e07060; border-color: rgba(184,50,32,.5); }
+    .action-btn {
+      padding: 6px 10px; border-radius: 4px; border: 1px solid var(--border);
+      background: rgba(255,255,255,.06); color: var(--cream); cursor: pointer;
+      font-family: inherit; font-size: .8rem; margin: 2px;
+    }
+    .action-btn.approve { border-color: rgba(45,122,62,.55); color: #6dbd80; }
+    .action-btn.reject { border-color: rgba(184,50,32,.55); color: #e07060; }
+    .action-btn:disabled { opacity: .5; cursor: wait; }
+
+    .status-check-card {
+      margin-top: 26px; background: linear-gradient(135deg, var(--card), rgba(30,22,8,.8));
+      border: 1px solid var(--border); border-radius: 12px; padding: 28px;
+    }
+    .status-check-grid {
+      display: grid; grid-template-columns: 1fr 1fr auto; gap: 14px; align-items: end;
+    }
+    @media (max-width: 700px) { .status-check-grid { grid-template-columns: 1fr; } }
+    #status-result {
+      display: none; margin-top: 16px; padding: 14px 16px; border-radius: 8px;
+      border: 1px solid var(--border); background: rgba(200,150,12,.08); line-height: 1.6;
+    }
+    #status-result.show { display: block; }
+
+
+    .admin-lookup-card {
+      margin-bottom: 24px;
+      background: linear-gradient(135deg, var(--card), rgba(30,22,8,.8));
+      border: 1px solid var(--border); border-radius: 10px; padding: 20px;
+    }
+    .admin-lookup-grid {
+      display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: end;
+    }
+    @media (max-width: 700px) { .admin-lookup-grid { grid-template-columns: 1fr; } }
+    #admin-customer-results {
+      display: none; margin-top: 16px; padding: 14px; border: 1px solid var(--border);
+      border-radius: 8px; background: rgba(200,150,12,.06); line-height: 1.6;
+    }
+    #admin-customer-results.show { display: block; }
+    .history-item {
+      border-bottom: 1px solid rgba(255,255,255,.07); padding: 10px 0;
+    }
+    .history-item:last-child { border-bottom: none; }
+
     /* ── ADMIN LOGIN ────────────────────── */
     #admin-login {
       position: fixed; inset: 0; z-index: 300; background: rgba(0,0,0,.97);
@@ -380,6 +431,29 @@
       border: 1px solid transparent;
     }
     .nav-link:hover { color: var(--gold2); border-color: var(--border); }
+
+
+    @media (max-width: 600px) {
+      body { padding-bottom: 98px; }
+      nav {
+        justify-content: space-around;
+        gap: 2px;
+        padding: 8px 8px 12px;
+      }
+      .nav-link {
+        font-size: .72rem;
+        padding: 6px 7px;
+      }
+      #admin-trigger {
+        bottom: 68px;
+        right: 10px;
+        font-size: .72rem;
+        padding: 7px 10px;
+      }
+      .admin-inner { padding: 26px 14px 110px; }
+      .filter-row input, .filter-row select { max-width: none; width: 100%; }
+      .filter-row > div, .filter-btn { width: 100%; }
+    }
 
     .tel { font-family: 'Noto Serif Telugu', serif; }
     .en { }
@@ -707,7 +781,7 @@
   <!-- Success -->
   <div id="success-msg">
     <div class="success-icon">🙏</div>
-    <div class="success-title" data-en="Appointment Confirmed!" data-te="అపాయింట్మెంట్ నిర్ధారించబడింది!">Appointment Confirmed!</div>
+    <div class="success-title" data-en="Booking Request Submitted!" data-te="బుకింగ్ అభ్యర్థన సమర్పించబడింది!">Booking Request Submitted!</div>
     <div class="success-sub" id="success-details"></div>
     <div>
       <div style="margin-top:14px; color:var(--muted); font-size:.88rem;"
@@ -715,14 +789,33 @@
       <div class="token-badge" id="token-display">—</div>
     </div>
     <div style="margin-top:20px; color:var(--muted); font-size:.88rem;"
-      data-en="Please save this token number and arrive 15 minutes before your session."
-      data-te="ఈ టోకెన్ నంబర్ సేవ్ చేసుకోండి మరియు మీ సెషన్‌కు 15 నిమిషాల ముందు రండి.">
-      Please save this token number and arrive 15 minutes before your session.
+      data-en="Please save this token number. The astrologer/admin will review and approve your appointment."
+      data-te="దయచేసి ఈ టోకెన్ నంబర్ సేవ్ చేసుకోండి. జ్యోతిష్కుడు/అడ్మిన్ మీ అపాయింట్మెంట్‌ను పరిశీలించి ఆమోదిస్తారు.">
+      Please save this token number. The astrologer/admin will review and approve your appointment.
     </div>
     <button onclick="resetForm()" style="margin-top:20px; background:transparent; border:1px solid var(--border); color:var(--muted); padding:10px 24px; border-radius:4px; cursor:pointer; font-family:inherit;"
       data-en="Book Another Appointment" data-te="మరో అపాయింట్మెంట్ బుక్ చేయండి">
       Book Another Appointment
     </button>
+  </div>
+
+  <!-- Booking Status Check -->
+  <div class="status-check-card" id="booking-status">
+    <div class="section-eyebrow" style="text-align:center;margin-bottom:8px;"
+      data-en="Check Booking Status" data-te="బుకింగ్ స్థితి చూడండి">Check Booking Status</div>
+    <div style="text-align:center;color:var(--muted);margin-bottom:18px;"
+      data-en="Enter your phone number to see all your past and present bookings, latest first."
+      data-te="మీ గత మరియు ప్రస్తుత బుకింగ్‌లన్నీ చూడడానికి మీ ఫోన్ నంబర్ నమోదు చేయండి. తాజావి ముందుగా కనిపిస్తాయి.">
+      Enter your phone number to see all your past and present bookings, latest first.
+    </div>
+    <div class="status-check-grid" style="grid-template-columns:1fr auto;">
+      <div class="form-group">
+        <label data-en="Phone Number" data-te="ఫోన్ నంబర్">Phone Number</label>
+        <input type="tel" id="status-phone" placeholder="+91 XXXXX XXXXX" />
+      </div>
+      <button class="filter-btn" onclick="checkBookingStatus()" data-en="Check Status" data-te="స్థితి చూడండి">Check Status</button>
+    </div>
+    <div id="status-result"></div>
   </div>
 
 </section>
@@ -780,6 +873,19 @@
 
     <div id="admin-summary" style="display:flex;gap:20px;flex-wrap:wrap;margin-bottom:24px;"></div>
 
+    <div class="admin-lookup-card">
+      <div style="font-family:'Cinzel Decorative',serif;color:var(--gold2);font-size:1.05rem;margin-bottom:12px;"
+        data-en="🔎 Customer Lookup" data-te="🔎 కస్టమర్ లుకప్">🔎 Customer Lookup</div>
+      <div class="admin-lookup-grid">
+        <div>
+          <label style="font-size:.8rem;color:var(--gold);display:block;margin-bottom:5px;" data-en="Search by Customer Name" data-te="కస్టమర్ పేరుతో వెతకండి">Search by Customer Name</label>
+          <input type="text" id="admin-customer-search" placeholder="Enter customer name" onkeydown="if(event.key==='Enter')searchCustomerHistory()" />
+        </div>
+        <button class="filter-btn" onclick="searchCustomerHistory()" data-en="Search History" data-te="చరిత్ర వెతకండి">Search History</button>
+      </div>
+      <div id="admin-customer-results"></div>
+    </div>
+
     <div style="overflow-x:auto;">
       <table id="appt-table">
         <thead>
@@ -796,6 +902,8 @@
             <th data-en="Birth Time" data-te="జన్మ సమయం">Birth Time</th>
             <th data-en="Birth Place" data-te="జన్మ స్థలం">Birth Place</th>
             <th data-en="Notes" data-te="గమనికలు">Notes</th>
+            <th data-en="Status" data-te="స్థితి">Status</th>
+            <th data-en="Actions" data-te="చర్యలు">Actions</th>
           </tr>
         </thead>
         <tbody id="appt-tbody"></tbody>
@@ -814,7 +922,7 @@
 // ─────────────────────────────────────────────────────────────────
 const CONFIG = {
   // After deploying Google Apps Script, paste the Web App URL here:
-  GOOGLE_SHEET_URL: 'https://script.google.com/macros/s/AKfycbxpYIQfCOY1Iarroe35CB088I5bq6WA-3XgVWagtrt47TdCwF8Rq3Dlfwkpzk1bHBIdfw/exec',
+  GOOGLE_SHEET_URL: 'https://script.google.com/macros/s/AKfycbwwJL9Dhx78Xm5IFMbJEQp8eQGmVw_RDS4okVUPOIIrvIzCCh1to0IRKmHNR90-yE80Tw/exec',
 
   // Admin password (change this!)
   ADMIN_PASSWORD: 'astro2025',
@@ -954,6 +1062,7 @@ async function submitAppointment() {
     bplace,
     notes:    document.getElementById('f-notes').value.trim(),
     timestamp: new Date().toISOString(),
+    status: 'Pending',
   };
 
   btn.disabled = true;
@@ -962,6 +1071,30 @@ async function submitAppointment() {
   try {
     if (!CONFIG.GOOGLE_SHEET_URL || CONFIG.GOOGLE_SHEET_URL === 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE') {
       throw new Error('Google Apps Script Web App URL is not configured.');
+    }
+
+    // Check duplicate before creating: only one active booking per phone number per date.
+    try {
+      const dupResp = await fetch(
+        CONFIG.GOOGLE_SHEET_URL + '?action=status&phone=' + encodeURIComponent(phone) + '&_=' + Date.now(),
+        { method: 'GET', cache: 'no-store' }
+      );
+      const dupData = await dupResp.json();
+      const previousBookings = extractAppointmentsResponse(dupData);
+      const hasDuplicate = previousBookings.some(b =>
+        normalizeDateValue(b.date) === date &&
+        !['rejected','cancelled'].includes(String(b.status || '').toLowerCase())
+      );
+      if (hasDuplicate) {
+        throw new Error(currentLang === 'te'
+          ? 'ఈ ఫోన్ నంబర్‌తో ఈ తేదీకి ఇప్పటికే ఒక బుకింగ్ ఉంది.'
+          : 'This phone number already has a booking for the selected date.');
+      }
+    } catch (dupErr) {
+      if (String(dupErr.message || '').includes('already has') || String(dupErr.message || '').includes('ఇప్పటికే')) {
+        throw dupErr;
+      }
+      console.warn('Duplicate pre-check could not be completed. Apps Script will still enforce it.', dupErr);
     }
 
     // Send appointment details directly to Google Sheets through Google Apps Script.
@@ -979,8 +1112,8 @@ async function submitAppointment() {
     document.getElementById('error-msg').classList.remove('show');
 
     const successDetails = currentLang === 'te'
-      ? `<strong>${name}</strong> గారి అపాయింట్మెంట్ <strong>${date}</strong> తేదీన <strong>${session}</strong> కోసం నిర్ధారించబడింది.`
-      : `Appointment for <strong>${name}</strong> on <strong>${date}</strong> for the <strong>${session}</strong> session is confirmed.`;
+      ? `<strong>${name}</strong> గారి బుకింగ్ అభ్యర్థన <strong>${date}</strong> తేదీన <strong>${session}</strong> కోసం సమర్పించబడింది. ప్రస్తుతం స్థితి: <strong>Pending</strong>.`
+      : `Booking request for <strong>${name}</strong> on <strong>${date}</strong> for the <strong>${session}</strong> session has been submitted. Current status: <strong>Pending</strong>.`;
     document.getElementById('success-details').innerHTML = successDetails;
     document.getElementById('token-display').textContent = token;
     document.getElementById('success-msg').classList.add('show');
@@ -1052,182 +1185,367 @@ function checkAdminLogin() {
     closeAdminLogin();
     document.getElementById('admin').classList.add('open');
     loadAdminData();
+    startAdminAutoRefresh();
   } else {
     document.getElementById('login-err').style.display = 'block';
   }
 }
 function closeAdmin() {
   document.getElementById('admin').classList.remove('open');
+  stopAdminAutoRefresh();
 }
 
-function loadAdminData() {
-  document.getElementById('admin-date-filter')
-  .addEventListener('change', loadAdminData);
+let latestAdminAppointments = [];
+let adminAutoRefreshTimer = null;
 
-  document.getElementById('admin-session-filter')
-  .addEventListener('change', loadAdminData);
-  
+function normalizeDateValue(value) {
+  if (!value) return '';
+  const str = String(value);
+  if (/^\d{4}-\d{2}-\d{2}/.test(str)) return str.substring(0, 10);
+  const d = new Date(str);
+  if (!isNaN(d.getTime())) return d.toISOString().substring(0, 10);
+  return str.substring(0, 10);
+}
 
-  
-  let appts = getLocalAppointments();
+function normalizeStatus(value) {
+  const status = String(value || 'Pending').trim();
+  if (!status) return 'Pending';
+  const lower = status.toLowerCase();
+  if (lower === 'approved') return 'Approved';
+  if (lower === 'rejected') return 'Rejected';
+  return 'Pending';
+}
 
-  // Also try fetching from Google Sheet if configured
-  if (CONFIG.GOOGLE_SHEET_URL && CONFIG.GOOGLE_SHEET_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE') {
-    fetch(
-  CONFIG.GOOGLE_SHEET_URL +
-  '?action=list' +
-  (dateFilter
-      ? '&date=' + encodeURIComponent(dateFilter)
-      : '') +
-  (sessionFilter
-      ? '&session=' + encodeURIComponent(sessionFilter)
-      : '')
-)
-      .then(r => r.json()).then(data => {
-        if (Array.isArray(data)) renderAdminTable(data, dateFilter, sessionFilter);
-      }).catch(() => renderAdminTable(appts, dateFilter, sessionFilter));
-  } else {
+function statusClass(status) {
+  const s = normalizeStatus(status).toLowerCase();
+  if (s === 'approved') return 'status-approved';
+  if (s === 'rejected') return 'status-rejected';
+  return 'status-pending';
+}
+
+function extractAppointmentsResponse(data) {
+  if (Array.isArray(data)) return data;
+  if (data && Array.isArray(data.data)) return data.data;
+  if (data && Array.isArray(data.rows)) return data.rows;
+  if (data && Array.isArray(data.appointments)) return data.appointments;
+  return [];
+}
+
+async function loadAdminData({ silent = false } = {}) {
+  const dateFilter    = document.getElementById('admin-date-filter').value;
+  const sessionFilter = document.getElementById('admin-session-filter').value;
+  const tbody = document.getElementById('appt-tbody');
+  const empty = document.getElementById('admin-empty');
+
+  if (!silent) {
+    tbody.innerHTML = `<tr><td colspan="14" style="text-align:center;color:var(--muted);padding:24px;">Loading appointments...</td></tr>`;
+    empty.style.display = 'none';
+  }
+
+  if (!CONFIG.GOOGLE_SHEET_URL || CONFIG.GOOGLE_SHEET_URL === 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE') {
+    latestAdminAppointments = [];
+    renderAdminTable([], dateFilter, sessionFilter);
+    empty.textContent = currentLang === 'te'
+      ? 'Google Apps Script URL కాన్ఫిగర్ చేయలేదు.'
+      : 'Google Apps Script URL is not configured.';
+    empty.style.display = 'block';
+    return;
+  }
+
+  try {
+    const url =
+      CONFIG.GOOGLE_SHEET_URL +
+      '?action=list' +
+      '&_=' + Date.now();
+
+    const response = await fetch(url, { method: 'GET', cache: 'no-store' });
+    const data = await response.json();
+    const appts = extractAppointmentsResponse(data);
+
+    latestAdminAppointments = appts;
     renderAdminTable(appts, dateFilter, sessionFilter);
+  } catch (err) {
+    console.error('Admin data load failed:', err);
+    latestAdminAppointments = [];
+    renderAdminTable([], dateFilter, sessionFilter);
+    empty.textContent = currentLang === 'te'
+      ? 'Google Sheet నుండి డేటా లోడ్ కాలేదు. Apps Script deployment మరియు access settings చెక్ చేయండి.'
+      : 'Could not load data from Google Sheet. Please check Apps Script deployment and access settings.';
+    empty.style.display = 'block';
   }
 }
 
 function renderAdminTable(appts, dateFilter, sessionFilter) {
-  let filtered = appts;
-if (dateFilter) {
-  filtered = filtered.filter(a => {
-    if (!a.date) return false;
+  let filtered = Array.isArray(appts) ? [...appts] : [];
 
-    const recordDate =
-      String(a.date).substring(0, 10);
+  if (dateFilter) {
+    filtered = filtered.filter(a => normalizeDateValue(a.date) === dateFilter);
+  }
 
-    return recordDate === dateFilter;
-  });
-}
-if (sessionFilter) {
-  filtered = filtered.filter(a => {
-    if (!a.session) return false;
+  if (sessionFilter) {
+    filtered = filtered.filter(a =>
+      String(a.session || '').toLowerCase().includes(sessionFilter.toLowerCase())
+    );
+  }
 
-    return a.session.toLowerCase()
-      .includes(sessionFilter.toLowerCase());
-  });
-}
+  latestAdminAppointments = filtered;
+
   const tbody = document.getElementById('appt-tbody');
   const empty = document.getElementById('admin-empty');
 
-  // Summary
+  const totalCount = filtered.length;
+  const pendingCount = filtered.filter(a => normalizeStatus(a.status) === 'Pending').length;
+  const approvedCount = filtered.filter(a => normalizeStatus(a.status) === 'Approved').length;
+  const rejectedCount = filtered.filter(a => normalizeStatus(a.status) === 'Rejected').length;
+  const morningCount = filtered.filter(a => String(a.session || '').toLowerCase().includes('morning')).length;
+  const eveningCount = filtered.filter(a => String(a.session || '').toLowerCase().includes('evening')).length;
+
   const sumDiv = document.getElementById('admin-summary');
-  const morningCount =
-  filtered.filter(x =>
-    x.session &&
-    x.session.includes('Morning')
-  ).length;
-
-  const eveningCount =
-  filtered.filter(x =>
-    x.session &&
-    x.session.includes('Evening')
-  ).length;
-  
   sumDiv.innerHTML = `
-    <div style="background:rgba(200,150,12,.1);border:1px solid var(--border);border-radius:6px;padding:14px 20px;min-width:140px;text-align:center;">
-      <div style="font-family:'Cinzel Decorative',serif;font-size:1.6rem;color:var(--gold2);">${filtered.length}</div>
-      <div style="font-size:.8rem;color:var(--muted);">${currentLang==='te'?'మొత్తం అపాయింట్మెంట్లు':'Total Appointments'}</div>
+    <div style="width:100%;color:var(--gold2);font-family:'Cinzel Decorative',serif;font-size:1.05rem;">
+      ${dateFilter ? 'Appointments for ' + dateFilter : 'All Appointments'}
+      ${sessionFilter ? ' — ' + sessionFilter : ''}
     </div>
-    <div style="background:rgba(50,100,200,.1);border:1px solid var(--border);border-radius:6px;padding:14px 20px;min-width:140px;text-align:center;">
-      <div style="font-family:'Cinzel Decorative',serif;font-size:1.6rem;color:#80aaff;">${filtered.filter(a=>a.gender==='Male').length}</div>
-      <div style="font-size:.8rem;color:var(--muted);">${currentLang==='te'?'పురుషులు':'Male'}</div>
-    </div>
-    <div style="background:rgba(200,80,120,.1);border:1px solid var(--border);border-radius:6px;padding:14px 20px;min-width:140px;text-align:center;">
-      <div style="font-family:'Cinzel Decorative',serif;font-size:1.6rem;color:#ff90b8;">${filtered.filter(a=>a.gender==='Female').length}</div>
-      <div style="font-size:.8rem;color:var(--muted);">${currentLang==='te'?'స్త్రీలు':'Female'}</div>
-    </div>
-    <div style="
-        background:rgba(50,100,200,.1);
-        border:1px solid var(--border);
-        border-radius:6px;
-        padding:14px 20px;
-        min-width:140px;
-        text-align:center;
-        ">
-      <div style="
-        font-family:'Cinzel Decorative',serif;
-        font-size:1.6rem;
-        color:#80aaff;
-  ">
-    ${morningCount}
-  </div>
-  <div style="
-    font-size:.8rem;
-    color:var(--muted);
-  ">
-    Morning
-  </div>
-</div>
-
-    <div style="
-    background:rgba(200,80,120,.1);
-    border:1px solid var(--border);
-    border-radius:6px;
-    padding:14px 20px;
-    min-width:140px;
-    text-align:center;
-    ">
-  <div style="
-    font-family:'Cinzel Decorative',serif;
-    font-size:1.6rem;
-    color:#ff90b8;
-  ">
-    ${eveningCount}
-  </div>
-
-  <div style="
-    font-size:.8rem;
-    color:var(--muted);
-  ">
-    Evening
-  </div>
-</div>
+    ${summaryCard(totalCount, currentLang==='te'?'మొత్తం':'Total', 'var(--gold2)')}
+    ${summaryCard(pendingCount, currentLang==='te'?'పెండింగ్':'Pending', 'var(--gold2)')}
+    ${summaryCard(approvedCount, currentLang==='te'?'ఆమోదం':'Approved', '#6dbd80')}
+    ${summaryCard(rejectedCount, currentLang==='te'?'తిరస్కరణ':'Rejected', '#e07060')}
+    ${summaryCard(morningCount, currentLang==='te'?'ఉదయం':'Morning', '#80aaff')}
+    ${summaryCard(eveningCount, currentLang==='te'?'సాయంత్రం':'Evening', '#ff90b8')}
   `;
 
   if (!filtered.length) {
     tbody.innerHTML = '';
+    empty.textContent = currentLang === 'te'
+      ? 'ఎంచుకున్న ఫిల్టర్‌లకు అపాయింట్మెంట్లు కనుగొనబడలేదు.'
+      : 'No appointments found for the selected filters.';
     empty.style.display = 'block';
     return;
   }
+
   empty.style.display = 'none';
 
-  tbody.innerHTML = filtered.map(a => `
-    <tr>
-      <td style="font-family:'Cinzel Decorative',serif;color:var(--gold);font-size:.8rem;">${a.token||'—'}</td>
-      <td style="font-weight:600;color:var(--cream);">${esc(a.name)}</td>
-      <td>${esc(a.phone)}</td>
-      <td>${a.date||'—'}</td>
-      <td>${esc(a.session)||'—'}</td>
-      <td><span class="badge ${a.gender==='Female'?'badge-f':'badge-m'}">${esc(a.gender)||'—'}</span></td>
-      <td>${esc(a.village)||'—'}</td>
-      <td style="max-width:140px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${esc(a.purpose)||'—'}</td>
-      <td>${a.dob||'—'}</td>
-      <td>${a.btime||'—'}</td>
-      <td>${esc(a.bplace)||'—'}</td>
-      <td style="max-width:120px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${esc(a.notes)||'—'}</td>
-    </tr>
-  `).join('');
+  tbody.innerHTML = filtered.map(a => {
+    const status = normalizeStatus(a.status);
+    const token = esc(a.token || '');
+    return `
+      <tr>
+        <td style="font-family:'Cinzel Decorative',serif;color:var(--gold);font-size:.8rem;">${token || '—'}</td>
+        <td style="font-weight:600;color:var(--cream);">${esc(a.name)}</td>
+        <td>${esc(a.phone)}</td>
+        <td>${normalizeDateValue(a.date) || '—'}</td>
+        <td>${esc(a.session)||'—'}</td>
+        <td><span class="badge ${a.gender==='Female'?'badge-f':'badge-m'}">${esc(a.gender)||'—'}</span></td>
+        <td>${esc(a.village)||'—'}</td>
+        <td style="max-width:140px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${esc(a.purpose)||'—'}</td>
+        <td>${normalizeDateValue(a.dob) || '—'}</td>
+        <td>${esc(a.btime)||'—'}</td>
+        <td>${esc(a.bplace)||'—'}</td>
+        <td style="max-width:120px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${esc(a.notes)||'—'}</td>
+        <td><span class="status-pill ${statusClass(status)}">${status}</span></td>
+        <td>
+          <button class="action-btn approve" onclick="updateAppointmentStatus('${token}', 'Approved')" ${status === 'Approved' ? 'disabled' : ''}>Approve</button>
+          <button class="action-btn reject" onclick="updateAppointmentStatus('${token}', 'Rejected')" ${status === 'Rejected' ? 'disabled' : ''}>Reject</button>
+        </td>
+      </tr>
+    `;
+  }).join('');
 }
+
+function summaryCard(value, label, color) {
+  return `
+    <div style="background:rgba(200,150,12,.1);border:1px solid var(--border);border-radius:6px;padding:14px 20px;min-width:120px;text-align:center;">
+      <div style="font-family:'Cinzel Decorative',serif;font-size:1.55rem;color:${color};">${value}</div>
+      <div style="font-size:.8rem;color:var(--muted);">${label}</div>
+    </div>
+  `;
+}
+
+async function updateAppointmentStatus(token, status) {
+  if (!token) return alert('Missing token.');
+
+  const actionText = status === 'Approved' ? 'approve' : 'reject';
+  const confirmed = confirm(`Are you sure you want to ${actionText} appointment ${token}?`);
+  if (!confirmed) return;
+
+  const buttons = document.querySelectorAll(`button[onclick*="${token}"]`);
+  buttons.forEach(b => { b.disabled = true; b.textContent = 'Updating...'; });
+
+  try {
+    const payload = {
+      action: 'updateStatus',
+      token,
+      status,
+      adminNotes: 'Updated from admin portal',
+      updatedAt: new Date().toISOString()
+    };
+
+    // Apps Script web apps often fail browser CORS for JSON POST.
+    // text/plain + no-cors sends the request reliably; Apps Script updates the sheet.
+    await fetch(CONFIG.GOOGLE_SHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload),
+    });
+
+    latestAdminAppointments = (latestAdminAppointments || []).map(a =>
+      String(a.token) === String(token)
+        ? { ...a, status, adminAction: status, updatedTimestamp: new Date().toISOString() }
+        : a
+    );
+
+    renderAdminTable(
+      latestAdminAppointments,
+      document.getElementById('admin-date-filter').value,
+      document.getElementById('admin-session-filter').value
+    );
+
+    setTimeout(() => loadAdminData({ silent: true }), 1200);
+  } catch (err) {
+    console.error('Status update failed:', err);
+    alert(currentLang === 'te'
+      ? 'స్థితి నవీకరణ విఫలమైంది. Apps Script deployment మరియు updateStatus action చెక్ చేయండి.'
+      : 'Status update failed. Please check Apps Script deployment and updateStatus action.');
+    await loadAdminData({ silent: true });
+  }
+}
+
+async function checkBookingStatus() {
+  const phone = document.getElementById('status-phone').value.trim();
+  const result = document.getElementById('status-result');
+
+  result.classList.remove('show');
+  result.innerHTML = '';
+
+  if (!phone) {
+    result.innerHTML = currentLang === 'te'
+      ? 'దయచేసి ఫోన్ నంబర్ నమోదు చేయండి.'
+      : 'Please enter your phone number.';
+    result.classList.add('show');
+    return;
+  }
+
+  try {
+    const url =
+      CONFIG.GOOGLE_SHEET_URL +
+      '?action=status' +
+      '&phone=' + encodeURIComponent(phone) +
+      '&_=' + Date.now();
+
+    const response = await fetch(url, { method: 'GET', cache: 'no-store' });
+    const data = await response.json();
+    const bookings = extractAppointmentsResponse(data);
+
+    if (!bookings.length) {
+      result.innerHTML = currentLang === 'te'
+        ? 'ఈ ఫోన్ నంబర్‌తో బుకింగ్‌లు కనుగొనబడలేదు.'
+        : 'No bookings found for this phone number.';
+      result.classList.add('show');
+      return;
+    }
+
+    bookings.sort((a, b) => new Date(b.createdTimestamp || b.timestamp || b.date || 0) - new Date(a.createdTimestamp || a.timestamp || a.date || 0));
+
+    result.innerHTML = bookings.map(booking => {
+      const bookingStatus = normalizeStatus(booking.status);
+      return `
+        <div class="history-item">
+          <strong>${esc(booking.name || '')}</strong><br>
+          Token: <strong>${esc(booking.token || '—')}</strong><br>
+          Date: <strong>${normalizeDateValue(booking.date) || '—'}</strong> &nbsp; | &nbsp;
+          Session: <strong>${esc(booking.session || '—')}</strong><br>
+          Purpose: ${esc(booking.purpose || '—')}<br>
+          Status: <span class="status-pill ${statusClass(bookingStatus)}">${bookingStatus}</span>
+          ${booking.adminNotes ? `<br>Admin Notes: ${esc(booking.adminNotes)}` : ''}
+        </div>
+      `;
+    }).join('');
+    result.classList.add('show');
+  } catch (err) {
+    console.error('Status check failed:', err);
+    result.innerHTML = currentLang === 'te'
+      ? 'స్థితి చెక్ చేయడం విఫలమైంది. కొద్దిసేపటి తర్వాత మళ్లీ ప్రయత్నించండి.'
+      : 'Could not check status. Please try again after some time.';
+    result.classList.add('show');
+  }
+}
+
+function searchCustomerHistory() {
+  const q = document.getElementById('admin-customer-search').value.trim().toLowerCase();
+  const result = document.getElementById('admin-customer-results');
+  result.classList.remove('show');
+  result.innerHTML = '';
+
+  if (!q) {
+    result.innerHTML = 'Please enter a customer name.';
+    result.classList.add('show');
+    return;
+  }
+
+  const matches = (latestAdminAppointments || [])
+    .filter(a => String(a.name || '').toLowerCase().includes(q))
+    .sort((a, b) => new Date(b.createdTimestamp || b.timestamp || b.date || 0) - new Date(a.createdTimestamp || a.timestamp || a.date || 0));
+
+  if (!matches.length) {
+    result.innerHTML = 'No customer booking history found for this name.';
+    result.classList.add('show');
+    return;
+  }
+
+  result.innerHTML = matches.map(a => {
+    const st = normalizeStatus(a.status);
+    return `
+      <div class="history-item">
+        <strong>${esc(a.name || '')}</strong> — <span class="status-pill ${statusClass(st)}">${st}</span><br>
+        Token: <strong>${esc(a.token || '—')}</strong> | Phone: ${esc(a.phone || '—')}<br>
+        Date: <strong>${normalizeDateValue(a.date) || '—'}</strong> | Session: ${esc(a.session || '—')}<br>
+        Purpose: ${esc(a.purpose || '—')}<br>
+        Birth: ${normalizeDateValue(a.dob) || '—'} ${a.btime ? ' at ' + esc(a.btime) : ''} ${a.bplace ? ' — ' + esc(a.bplace) : ''}
+        ${a.notes ? `<br>Notes: ${esc(a.notes)}` : ''}
+      </div>
+    `;
+  }).join('');
+  result.classList.add('show');
+}
+
+function startAdminAutoRefresh() {
+  stopAdminAutoRefresh();
+  adminAutoRefreshTimer = setInterval(() => {
+    if (document.getElementById('admin').classList.contains('open')) {
+      loadAdminData({ silent: true });
+    }
+  }, 30000);
+}
+
+function stopAdminAutoRefresh() {
+  if (adminAutoRefreshTimer) {
+    clearInterval(adminAutoRefreshTimer);
+    adminAutoRefreshTimer = null;
+  }
+}
+
+document.getElementById('admin-date-filter').addEventListener('change', () => loadAdminData());
+document.getElementById('admin-session-filter').addEventListener('change', () => loadAdminData());
 
 function esc(str) {
   if (!str) return '';
-  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/'/g,'&#39;');
 }
 
 // ─────────────────────────────────────────────────────────────────
 // EXPORT CSV
 // ─────────────────────────────────────────────────────────────────
 function exportCSV() {
-  const appts = getLocalAppointments();
-  if (!appts.length) { alert('No data to export.'); return; }
-  const headers = ['Token','Name','Phone','Date','Session','Gender','Village','Purpose','DOB','Birth Time','Birth Place','Notes','Timestamp'];
-  const rows = appts.map(a => [a.token,a.name,a.phone,a.date,a.session,a.gender,a.village,a.purpose,a.dob,a.btime,a.bplace,a.notes,a.timestamp]
-    .map(v => '"' + (v||'').replace(/"/g,'""') + '"').join(','));
+  const appts = latestAdminAppointments || [];
+  if (!appts.length) { alert('No filtered data to export.'); return; }
+
+  const headers = ['Token','Name','Phone','Date','Session','Gender','Village','Purpose','DOB','Birth Time','Birth Place','Notes','Status','Timestamp'];
+  const rows = appts.map(a => [
+    a.token,a.name,a.phone,normalizeDateValue(a.date),a.session,a.gender,a.village,a.purpose,
+    normalizeDateValue(a.dob),a.btime,a.bplace,a.notes,normalizeStatus(a.status),a.timestamp
+  ].map(v => '"' + String(v || '').replace(/"/g,'""') + '"').join(','));
+
   const csv = [headers.join(','), ...rows].join('\n');
   const blob = new Blob([csv], { type: 'text/csv' });
   const url = URL.createObjectURL(blob);
